@@ -2,17 +2,21 @@
 
 面向小团队的文档问答工具：把文档丢进 `docs/`，一句命令建索引，提问时答案带**原文出处**。
 
-> 状态：**v0.1 开发中**（仓库骨架已就绪，代码按阶段逐步补齐，见 [ROADMAP.md](ROADMAP.md)）
+> 状态：**v0.1 可用** —— `ingest` 建索引、`ask` 提问（答案带原文出处）。后续阶段见 [ROADMAP.md](ROADMAP.md)
 
-## 三步上手（v0.1 完成后可用）
+## 三步上手
 
 1. **装依赖**：`pip install -r requirements.txt`
-2. **放文档**：把 `.md` / `.txt` 丢进 `docs/`
-3. **建索引 + 提问**：
+2. **配密钥**：`cp .env.example .env`（Windows：`Copy-Item .env.example .env`），填入自己的 `DEEPSEEK_API_KEY` 与 `DASHSCOPE_API_KEY`
+3. **放文档，然后用起来**：
+
+   ```bash
+   # 把 .md / .txt 丢进 docs/ 之后：
+   python src/ingest.py                        # 扫描 docs/ 建索引（落盘到 .index/）
+   python src/ask.py "口径变更要怎么走流程？"     # 提问，答案带来源文件名
    ```
-   python src/ingest.py          # 扫描 docs/ 建索引（落盘到 .index/）
-   python src/ask.py "最小权限是什么"
-   ```
+
+   资料里没有答案时它会回答"不知道"而不是编造；`ask.py` 只读索引，所以第二次提问不会重新向量化。
 
 ## 目录结构
 
