@@ -1,0 +1,11 @@
+# 密钥
+.env
+
+# 索引（可由 docs/ 重建）
+.index/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/

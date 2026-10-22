@@ -1,0 +1,12 @@
+{"id": 1, "question": "组内职责有哪些？", "expect_source": "示例-组内职责说明.md", "expect_contains": ["数据接入链路", "口径", "取数", "质量监控"]}
+{"id": 2, "question": "这个岗位的必备技能是什么？", "expect_source": "示例-组内职责说明.md", "expect_contains": ["SQL", "Python", "Linux"]}
+{"id": 3, "question": "哪些技能算加分项？", "expect_source": "示例-组内职责说明.md", "expect_contains": ["向量检索", "RAG", "自动化"]}
+{"id": 4, "question": "口径变更要怎么走流程？", "expect_source": "示例-组内职责说明.md", "expect_contains": ["口径文档", "通知下游"]}
+{"id": 5, "question": "上线流程是怎样的？", "expect_source": "示例-组内职责说明.md", "expect_contains": ["代码评审", "灰度", "全量"]}
+{"id": 6, "question": "数据延迟了怎么办？", "expect_source": "示例-组内职责说明.md", "expect_contains": ["上游任务", "调度队列"]}
+{"id": 7, "question": "口径不一致以哪个为准？", "expect_source": "示例-组内职责说明.md", "expect_contains": ["口径文档", "最新版本"]}
+{"id": 8, "question": "新人怎么上手？", "expect_source": "示例-组内职责说明.md", "expect_contains": ["读本文件", "取数需求"]}
+{"id": 9, "question": "需求评审的流程是什么？", "expect_source": "示例-组内职责说明.md", "expect_contains": ["评估口径", "交付时间"]}
+{"id": 10, "question": "数据质量谁负责？", "expect_source": "示例-组内职责说明.md", "expect_contains": ["监控", "告警"]}
+{"id": 11, "question": "公司年假有几天？", "expect_refuse": true}
+{"id": 12, "question": "今年的团建预算是多少？", "expect_refuse": true}
