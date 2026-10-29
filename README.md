@@ -1,4 +1,4 @@
-# team-kb
+# CiteKit
 
 面向小团队的文档问答工具：把文档丢进 `docs/`，一句命令建索引，提问时答案带**原文出处**。
 
@@ -21,7 +21,7 @@
 ## 目录结构
 
 ```
-team-kb/
+CiteKit/
   docs/          # 你的文档（唯一需要你操作的地方）
   .index/        # 索引落盘（不进 git）
   src/           # kb.py 公共能力 / ingest.py 建索引 / ask.py 提问

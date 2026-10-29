@@ -1,0 +1,12 @@
+# v0.3：docker compose up 一条命令启动（本机未验证：作者环境无 Docker）
+services:
+  citekit:
+    build: .
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    volumes:
+      - ./docs:/app/docs
+      - ./.index:/app/.index
+    restart: unless-stopped
