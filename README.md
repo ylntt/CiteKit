@@ -2,7 +2,7 @@
 
 面向小团队的文档问答工具：把文档丢进 `docs/`，一条命令建索引，提问时答案带**原文出处**；资料里没有答案时回答"不知道"，而不是编造。
 
-> 状态：**v0.2 可用**（增量索引）+ **v0.3 网页界面**。Docker 配置已提供，但作者本机未装 Docker，**尚未验证**。后续阶段见 [ROADMAP.md](ROADMAP.md)
+> 状态：**v0.2 可用**（增量索引）+ **v0.3 已完成**（网页界面 + Docker，均已实机验证）。后续阶段见 [ROADMAP.md](ROADMAP.md)
 
 ## 特性
 
@@ -43,13 +43,28 @@ python src/eval.py 2      # 指定 k，用来对比不同 k 的效果
 
 输出检索命中率（Recall@k）、答案正确率、拒答正确率与平均耗时。用例格式见 `eval/README.md`。
 
-## Docker（v0.3，未验证）
+## Docker（v0.3，已实机验证）
 
 ```bash
-docker compose up --build     # 需要 Docker Desktop 或 WSL2
+docker compose up --build      # 打开 http://localhost:8501
+docker compose exec citekit python src/ask.py "口径变更要怎么走流程？"   # 容器内跑命令行问答
+docker compose down            # 停止
 ```
 
-配置见 `Dockerfile` 与 `docker-compose.yml`：镜像基于 `python:3.11-slim`，`docs/` 与 `.index/` 通过卷挂载，密钥由 `.env` 注入。**作者本机无 Docker，此路径未经实机验证。**
+- 镜像基于 `python:3.11-slim`（顺带解掉 3.8 的语法与依赖限制）
+- `docs/` 与 `.index/` 通过卷挂载（数据留在宿主机）；密钥由 `.env` 注入
+- **已验证**：镜像构建 → 容器启动 → 页面 HTTP 200 → 容器内跑通问答与拒答；宿主机（Python 3.8）生成的索引能被容器（3.11）直接读回
+
+### 国内网络下的两处加速
+
+1. **依赖安装**：`Dockerfile` 默认走清华 PyPI 镜像，可覆盖：
+   ```bash
+   docker compose build --build-arg PIP_INDEX_URL=https://pypi.org/simple
+   ```
+2. **拉基础镜像**：在 Docker 的 `daemon.json` 里配 `registry-mirrors`（本机实测可用：`docker.m.daocloud.io`、`docker.1ms.run`、`docker.1panel.live`）
+   ```json
+   { "registry-mirrors": ["https://docker.m.daocloud.io", "https://docker.1ms.run"] }
+   ```
 
 ## 目录结构
 
